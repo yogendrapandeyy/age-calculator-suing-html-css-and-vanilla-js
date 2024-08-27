@@ -1,0 +1,267 @@
+<!doctype html>
+<html>
+    <head>
+        <title>
+            age calculator
+        </title>
+        <style>
+       #container{
+        display:flex;
+       }
+       h1{
+        text-align:center;
+       }
+       h3{
+        text-align:center;
+       }
+       input{
+        margin:10px 10px 10px 10px;
+        text-align:center;
+       }
+       #result{
+        background-color:mediumseagreen;
+        width:80%;
+        margin-left:100px;
+      margin-top:1.5em;
+      width:80%;
+      border-radius:1px;
+      box-shadow:2px 2px 2px black;
+
+       }
+       button:hover{
+       background-color:rgba(34, 255, 0, 0.811)
+       }
+      #container2{
+      margin-left:140px;
+      margin-top:1.5em;
+      width:70%;
+      background-color:mediumseagreen;
+      border-radius:1px;
+      box-shadow:2px 2px 2px black;
+      text-align:center;
+      }
+       
+        </style>
+    </head>
+    <body>
+        <h1>AGE CALCULATOR</h1>
+        <div id="container">
+        <div id="container2"><label for="dob" >enter your date of birth here<input type="date" min="1920-01-01" max="2030-01-01" value="1990-01-01" id="dob"><button class="btnn" type="submit" id="dob">submit</button></label></div>
+        </div>
+        <div id="result">
+        </div>
+        <script>
+                let result=document.getElementById("result")
+
+let btnn=document.getElementsByClassName("btnn")[0]
+console.log(btnn)
+btnn.addEventListener("click",function(){
+        
+        //below code for removing or refreshing screen if user asks for more than 1 calculation see the end of code
+        //this code was not working if(result.firstChild){
+              //  result.removefirstChild()
+
+       // }
+
+       result.innerHTML=""
+
+       
+    console.log(document.getElementById("dob").value)
+            console.log(document.getElementById("dob").value.length)
+        let dobdate=document.getElementById("dob").value
+            let dobyear=dobdate.slice(0,4)
+            console.log(dobyear)
+            let dobmonth=dobdate
+            .slice(5,7)
+            console.log(dobmonth)
+            let dobday=dobdate
+            .slice(8)
+            console.log(dobday)
+            let today=new Date()
+            console.log(today)
+            let cyear=today.getFullYear()
+            console.log(cyear)
+            let cmonth=today.getMonth()
+
+            //have to be careful here as this is from zero index 
+            //so for june month numbered 6 here index will be 5
+
+            console.log(cmonth)
+            cmonth=cmonth+1;
+            //above this is the actual month from our 1 to 12 index
+            let cday=today.getDate()
+            console.log(cday)
+
+
+            //for below line i subratct 1 extra from years from dob to present year as i want
+            //for now only focus on years between dob year and cyear beacuse for all person
+            //will not have lived current full year
+
+
+       let yearss=cyear-1-dobyear
+       
+       console.log(yearss)
+     let adddobmonth=0;
+    if(dobmonth==1){
+        adddobmonth=adddobmonth+11;
+        console.log(adddobmonth)
+    }
+    else if(dobmonth==2){
+            adddobmonth=adddobmonth+10;
+    }
+    else if(dobmonth==3){
+            adddobmonth=adddobmonth+9;
+    }
+    else if(dobmonth==4){
+            adddobmonth=adddobmonth+8;
+    }
+    else if(dobmonth==5){
+            adddobmonth=adddobmonth+7;
+    }
+    else if(dobmonth==6){
+            adddobmonth=adddobmonth+6;
+    }
+    else if(dobmonth==7){
+            adddobmonth=adddobmonth+5;
+    }
+    else if(dobmonth==8){
+            adddobmonth=adddobmonth+4;
+    }
+    else if(dobmonth==9){
+            adddobmonth=adddobmonth+3;
+    }
+    else if(dobmonth==10){
+            adddobmonth=adddobmonth+2;
+    }
+    else if(dobmonth==11){
+            adddobmonth=adddobmonth+1;
+    }
+    else if(dobmonth==12){
+            adddobmonth=adddobmonth+0;
+         }
+    console.log(adddobmonth)
+
+    //have to include different condition for leap year and 
+    //its feb month 366 total days and 29 feb days
+
+    let adddobday=0;
+    if(dobmonth==1){
+            adddobday=31-dobday+1;
+    }
+            //below line as 365 days already add 28 days of feb not
+                //30 or 31 so i have to just minus jan days that is 31 and to the days passes in feb that is dobday
+               
+                if(dobmonth==2){
+                        let checkk=dobyear%4
+                        let checkk3=dobyear%100;
+                        let checkk2=dobyear%400;
+                 if(checkk==0){
+                
+                 if(checkk2==0){
+                        adddobday=29-dobday+1;
+                 }
+                 
+                       else if(checkk3==0){
+                        adddobday=28-dobday+1;
+                       }  
+               else{
+            adddobday=29-dobday+1;
+                }
+        }
+        else{
+               adddobday=28-dobday+1; 
+        }
+                }
+
+                if(dobmonth==3){  
+            adddobday=31-dobday+1;
+                }
+            if(dobmonth==4){
+            adddobday=30-dobday+1;
+            }
+            if(dobmonth==5){
+            adddobday=31-dobday+1;
+            }
+            if(dobmonth==6){
+            adddobday=30-dobday+1;
+            }
+            if(dobmonth==7){  
+            adddobday=31-dobday+1;
+            }
+            if(dobmonth==8){  
+            adddobday=31-dobday+1;
+            }
+            if(dobmonth==9){ 
+            adddobday=30-dobday+1;
+            }
+            if(dobmonth==10){ 
+            adddobday=31-dobday+1;
+            }
+            if(dobmonth==11){
+            adddobday=30-dobday+1;
+            } 
+            if(dobmonth==12){  
+            adddobday=31-dobday+1;
+            }
+
+
+//update on 27/11/23 after about 2-3 months from making this program , i dont need to account
+// for present years feb days if it is a leap year beacuse in that case i can get that date
+//from date function object so if its 29 feb , javascript will give be 29 feb itself
+//or 1 march if its not leap year or normal year after 28 feb
+
+    let months=[1,2,3,4,5,6,7,8,9,10,11,12]
+
+    let addcmontharr=[]
+    for(let i=months[0];i<=cmonth;i++){
+        addcmontharr.push(i)
+    } 
+    console.log(addcmontharr)
+    let addcmonth=addcmontharr.length-1
+    console.log(addcmonth)
+    console.log(adddobmonth)
+    //above line is such that beacuse new year has to start from jan
+    //so no of months will increse upto the month and i have removed current month as would
+    //not be complete
+
+    // from the variable used for current month
+    let addcday=cday;
+    let totalmonths=addcmonth+adddobmonth
+    console.log(totalmonths)
+    let totaldays=cday+adddobday
+    if(totaldays>=30){
+       totalmonths=totalmonths+1;
+       totaldays=totaldays-30;
+    }
+    console.log(totaldays)
+
+    console.log(totalmonths)
+    if (totalmonths>=12){
+        yearss=yearss+1;
+        totalmonths=totalmonths-12;
+    
+    }
+    console.log(totalmonths)
+
+    console.log(totaldays)
+    console.log(totalmonths)
+    console.log(yearss)
+   let op=document.createElement("h3")
+   let strr="Your current age is "+yearss
+   strr=strr+" years "+totalmonths
+   strr=strr+" months "+totaldays
+   strr=strr+" days"
+   console.log(strr)
+   op.innerHTML=strr
+   result.appendChild(op)
+
+})
+
+
+    
+
+
+    
+
+        </script>
+    </body>
